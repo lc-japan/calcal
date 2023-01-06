@@ -1,737 +1,723 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-PLT44FL');</script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PLT44FL');</script>
   <!-- End Google Tag Manager -->
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- drawer.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/css/drawer.min.css">
+	<meta charset="utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<!-- drawer.css -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/css/drawer.min.css">
 
-  <!-- jquery & iScroll -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
-  <!-- drawer.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/js/drawer.min.js"></script>
+	<!-- jquery & iScroll -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
+	<!-- drawer.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/js/drawer.min.js"></script>
 
-  <title>calcal(カルカル)</title>
-  <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="style.css">
+	<title>calcal(カルカル)</title>
+	<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="style.css">
 
-  <!-- ハンバーガーメニュー 自動開閉 -->
-  <script>
-    $(function () {
-      var ua = navigator.userAgent;
-      if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
-        $(function () {
-          $('.cp_menuicon').on('click', () => {
-            $('.cp_offcm02').show();
-          });
-        });
+<!-- ハンバーガーメニュー 自動開閉 -->
+<script>
+$(function () {
+    var ua = navigator.userAgent;
+    if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
+$(function () {
+    $('.cp_menuicon').on('click', () => {
+        $('.cp_offcm02').show();
+    });
+});
 
-        $(function () {
-          $('.openButton').on('click', () => {
-            $('.cp_offcm02').slideUp();
-          });
-        });
-      }
-    })
-  </script>
-  <script language="Javascript">
-    function Click_Sub1(check) {
-      for (i = 0; i < document.all.cp_menuicon.length; i++) {
-        document.all.cp_menuicon[i].checked = check;
-      }
+$(function () {
+    $('.openButton').on('click', () => {
+        $('.cp_offcm02').slideUp();
+    });
+});
     }
-  </script>
+})
+</script>
+<script language="Javascript">
+function Click_Sub1(check) {
+    for(i = 0; i < document.all.cp_menuicon.length; i++){
+        document.all.cp_menuicon[i].checked = check;
+    }
+}
+</script>
 
-  <!-- おすすめメニューバー -->
-  <script>
-    //Based on https://codepen.io/zuraizm/pen/vGDHl pen by zuraiz
-    jQuery(document).ready(function ($) {
-      if (window.matchMedia('(max-width: 999999999px)').matches) {
-        startSlider($('#voice_slider'), 30); // Slide container ID, SlideShow interval
-        function startSlider(obj, timer) {
-          var obj, timer;
-          var id = "#" + obj.attr("id");
-          var slideCount = obj.find('ul li').length;
-          slideWidth = obj.attr("data-width");
-          var sliderUlWidth = (slideCount + 1) * slideWidth;
-          // var time = 2;
-          var $bar,
-            isPause,
-            tick,
-            percentTime;
-          isPause = false; //false for auto slideshow
-          $bar = obj.find('.voice_progress .voice_bar');
+<!-- おすすめメニューバー -->
+<script>
+//Based on https://codepen.io/zuraizm/pen/vGDHl pen by zuraiz
+jQuery(document).ready(function ($) {
+	if (window.matchMedia( '(max-width: 999999999px)' ).matches) {
+		startSlider($('#voice_slider'), 30); // Slide container ID, SlideShow interval
+		function startSlider(obj, timer) {
+				var obj, timer;
+				var id = "#"+obj.attr("id");
+				var slideCount = obj.find('ul li').length;
+				slideWidth = obj.attr("data-width");
+				var sliderUlWidth = (slideCount+1) * slideWidth;
+				// var time = 2;
+				var $bar,
+				isPause,
+				tick,
+				percentTime;
+				isPause = false; //false for auto slideshow
+				$bar = obj.find('.voice_progress .voice_bar');
 
-          function startProgressbar() {
-            resetProgressbar();
-            percentTime = 0;
-            tick = setInterval(interval, timer);
-          }
+				function startProgressbar() {
+						resetProgressbar();
+						percentTime = 0;
+						tick = setInterval(interval, timer);
+				}
 
-          function interval() {
-            if (isPause === false) {
-              percentTime += 1 / (time + 0.1);
-              $bar.css({
-                width: percentTime + "%"
-              });
-              if (percentTime >= 100) {
-                moveRight();
-                startProgressbar();
-              }
-            }
-          }
+				function interval() {
+						if (isPause === false) {
+							percentTime += 1 / (time + 0.1);
+							$bar.css({
+								width: percentTime + "%"
+							});
+							if (percentTime >= 100) {
+								moveRight();
+								startProgressbar();
+							}
+						}
+				}
 
-          function resetProgressbar() {
-            $bar.css({
-              width: 0 + '%'
-            });
-            clearTimeout(tick);
-          }
+				function resetProgressbar() {
+						$bar.css({
+							width: 0 + '%'
+						});
+						clearTimeout(tick);
+				}
 
-          function startslide() {
-            $(id + ' ul li:last-child').prependTo(id + ' ul');
-            obj.find('ul').css({ width: sliderUlWidth + 'vw', marginLeft: - slideWidth + 'vw' });
-            obj.find('ul li:last-child').appendTo(obj.attr('id') + ' ul');
-          }
+				function startslide() {
+						$(id+' ul li:last-child').prependTo(id+' ul');
+						obj.find('ul').css({ width: sliderUlWidth+'vw', marginLeft: - slideWidth+'vw' });
+						obj.find('ul li:last-child').appendTo(obj.attr('id')+' ul');
+				}
 
-          if (slideCount > 1) {
-            startslide();
-            startProgressbar();
-          }
-          else { // hade navigation buttons for 1 slide only
-            $(id + ' button.voice_prev').hide();
-            $(id + ' button.voice_next').hide();
-          }
+				if (slideCount>1) {
+						startslide();
+						startProgressbar();
+				}
+				else { // hade navigation buttons for 1 slide only
+						 $(id+' button.voice_prev').hide();
+						 $(id+' button.voice_next').hide();
+				}
 
-          function moveLeft() {
-            $(id + ' ul').css({
-              transition: "1s",
-              transform: "translateX(" + slideWidth + "vw)"
-            });
+				function moveLeft() {
+					 $(id+' ul').css( { transition: "1s",
+									transform:  "translateX(" + slideWidth + "vw)"
+						});
 
-            setTimeout(function () {
-              $(id + ' ul li:last-child').prependTo(id + ' ul');
-              $(id + ' ul').css({
-                transition: "none",
-                transform: "translateX(" + 0 + "vw)"
-              });
+						setTimeout( function() {
+								$(id+' ul li:last-child').prependTo(id+' ul');
+								$(id+' ul').css( { transition: "none",
+									transform:  "translateX(" + 0 + "vw)"
+								});
 
-              $('li.voice_actslide').prev().addClass('actslide').next().removeClass('actslide');
-            }, 1000);
-          }
+								$('li.voice_actslide').prev().addClass('actslide').next().removeClass('actslide');
+						}, 1000 );
+				}
 
-          function moveRight2() { // fix for only 2 slades
-            $(id + ' ul li:first-child').appendTo(id + ' ul');
-            $(id + ' ul').css({ transition: "none", transform: "translateX(100vw)" }).delay();
+				function moveRight2() { // fix for only 2 slades
+					$(id+' ul li:first-child').appendTo(id+' ul');
+　　   $(id+' ul').css( { transition: "none", transform:  "translateX(100vw)"}).delay();
 
-            setTimeout(function () {
-              $(id + ' ul').css({ transition: "1s", transform: "translateX(0vw)" });
-            }, 100, setTimeout(function () {
+					setTimeout( function() {
+										$(id+' ul').css( { transition: "1s", transform:  "translateX(0vw)" });
+								}, 100, setTimeout( function() {
 
-              $(id + ' ul').css({ transition: "none", transform: "translateX(0vw)" });
-              $('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
-            }, 1000));
-          }
+$(id+' ul').css( { transition: "none", transform:  "translateX(0vw)" });
+$('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
+								}, 1000 )  );
+				}
 
-          function moveRight() {
-            if (slideCount > 2) {
-              $(id + ' ul').css({
-                transition: "1s",
-                transform: "translateX(" + (-1) * slideWidth + "vw)"
-              });
+				function moveRight() {
+						if (slideCount>2) {
+									$(id+' ul').css( { transition: "1s",
+									transform:  "translateX(" + (-1)*slideWidth + "vw)"
+								});
 
-              setTimeout(function () {
-                $(id + ' ul li:first-child').appendTo(id + ' ul');
-                $(id + ' ul').css({
-                  transition: "none",
-                  transform: "translateX(" + 0 + "vw)"
-                });
+								setTimeout( function() {
+										$(id+' ul li:first-child').appendTo(id+' ul');
+										$(id+' ul').css( { transition: "none",
+											transform:  "translateX(" + 0 + "vw)"
+										});
 
-                $('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
-              }, 1000);
-            }
-            else {
-              moveRight2();
-            }
-          }
+										$('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
+								}, 1000 );
+						}
+						else {
+								moveRight2();
+						}
+				}
 
-          $(id + ' button.voice_prev').click(function () {
-            moveLeft();
-            startProgressbar();
-          });
+				$(id+' button.voice_prev').click(function () {
+						moveLeft();
+						startProgressbar();
+				});
 
-          $(id + ' button.voice_next').click(function () {
-            moveRight();
-            startProgressbar();
-          });
+				$(id+' button.voice_next').click(function () {
+							moveRight();
+							startProgressbar();
+				});
 
-          $(id + ' .voice_progress').click(function () {
-            if (isPause === false) {
-              isPause = true;
-            }
-            else {
-              isPause = false;
-            }
-          });
-        }
-      };
-    });
-  </script>
+				$(id+' .voice_progress').click(function() {
+						if (isPause === false) {
+								isPause = true;
+						}
+						else {
+								isPause = false;
+						}
+			});
+	}
+	};
+});
+</script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
-  <!-- worries -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_worries span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_worries").offset().top) return;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+<!-- worries -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_worries span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_worries").offset().top) return;
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_worries').children().andSelf().contents().each(function () {
+    // ここで文字を<span></span>で囲む
+    $('.tgt_worries').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_worries').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_worries').children().size(); i++) {
-        $('.tgt_worries').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
-  <!-- ABOUT -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_about span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_about").offset().top) return;
+    // 一文字ずつフェードインさせる
+    $('.tgt_worries').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_worries').children().size(); i++) {
+        $('.tgt_worries').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_about').children().andSelf().contents().each(function () {
+<!-- ABOUT -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_about span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_about").offset().top) return;
+
+    // ここで文字を<span></span>で囲む
+    $('.tgt_about').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_about').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_about').children().size(); i++) {
-        $('.tgt_about').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
-  <!-- サービス -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_service span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_service").offset().top) return;
+    // 一文字ずつフェードインさせる
+    $('.tgt_about').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_about').children().size(); i++) {
+        $('.tgt_about').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_service').children().andSelf().contents().each(function () {
+<!-- サービス -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_service span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_service").offset().top) return;
+
+    // ここで文字を<span></span>で囲む
+    $('.tgt_service').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_service').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_service').children().size(); i++) {
-        $('.tgt_service').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
-  <!-- goal -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_goal span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_goal").offset().top) return;
+    // 一文字ずつフェードインさせる
+    $('.tgt_service').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_service').children().size(); i++) {
+        $('.tgt_service').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_goal').children().andSelf().contents().each(function () {
+<!-- goal -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_goal span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_goal").offset().top) return;
+
+    // ここで文字を<span></span>で囲む
+    $('.tgt_goal').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_goal').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_goal').children().size(); i++) {
-        $('.tgt_goal').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
-  <!-- price -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_price span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_price").offset().top) return;
+    // 一文字ずつフェードインさせる
+    $('.tgt_goal').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_goal').children().size(); i++) {
+        $('.tgt_goal').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_price').children().andSelf().contents().each(function () {
+<!-- price -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_price span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_price").offset().top) return;
+
+    // ここで文字を<span></span>で囲む
+    $('.tgt_price').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_price').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_price').children().size(); i++) {
-        $('.tgt_price').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
-  <!-- voice -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_voice span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_voice").offset().top) return;
+    // 一文字ずつフェードインさせる
+    $('.tgt_price').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_price').children().size(); i++) {
+        $('.tgt_price').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_voice').children().andSelf().contents().each(function () {
+<!-- voice -->
+<script>
+	$(window).scroll(function () {
+		if ($('.tgt_voice span').length > 0) return;
+		var w_bottom = $(window).scrollTop() + $(window).height();
+		if (w_bottom < $(".tgt_voice").offset().top) return;
+
+		// ここで文字を<span></span>で囲む
+		$('.tgt_voice').children().andSelf().contents().each(function() {
+			if (this.nodeType == 3) {
+				$(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+			}
+		});
+
+		// 一文字ずつフェードインさせる
+		$('.tgt_voice').css({'opacity':1});
+		for (var i = 0; i <= $('.tgt_voice').children().size(); i++) {
+			$('.tgt_voice').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+		};
+	});
+	</script>
+
+<!-- MESSAGE -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_message span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_message").offset().top) return;
+
+    // ここで文字を<span></span>で囲む
+    $('.tgt_message').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_voice').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_voice').children().size(); i++) {
-        $('.tgt_voice').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
-  <!-- MESSAGE -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_message span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_message").offset().top) return;
+    // 一文字ずつフェードインさせる
+    $('.tgt_message').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_message').children().size(); i++) {
+        $('.tgt_message').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_message').children().andSelf().contents().each(function () {
+
+<!-- CONTACT -->
+<script>
+$(window).scroll(function () {
+    if ($('.tgt_contact span').length > 0) return;
+    var w_bottom = $(window).scrollTop() + $(window).height();
+    if (w_bottom < $(".tgt_contact").offset().top) return;
+
+    // ここで文字を<span></span>で囲む
+    $('.tgt_contact').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_message').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_message').children().size(); i++) {
-        $('.tgt_message').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
     });
-  </script>
 
+    // 一文字ずつフェードインさせる
+    $('.tgt_contact').css({'opacity':1});
+    for (var i = 0; i <= $('.tgt_contact').children().size(); i++) {
+        $('.tgt_contact').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+    };
+});
+</script>
 
-  <!-- CONTACT -->
-  <script>
-    $(window).scroll(function () {
-      if ($('.tgt_contact span').length > 0) return;
-      var w_bottom = $(window).scrollTop() + $(window).height();
-      if (w_bottom < $(".tgt_contact").offset().top) return;
+<!-- スクロール -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script>
+function scrollChk(){
+  var scroll = $(window).scrollTop();
+  var windowHeight = $(window).height();
 
-      // ここで文字を<span></span>で囲む
-      $('.tgt_contact').children().andSelf().contents().each(function () {
-        if (this.nodeType == 3) {
-          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
-        }
-      });
-
-      // 一文字ずつフェードインさせる
-      $('.tgt_contact').css({ 'opacity': 1 });
-      for (var i = 0; i <= $('.tgt_contact').children().size(); i++) {
-        $('.tgt_contact').children('span:eq(' + i + ')').delay(300 * i).animate({ 'opacity': 1 }, 400);
-      };
-    });
-  </script>
-
-  <!-- スクロール -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script>
-    function scrollChk() {
-      var scroll = $(window).scrollTop();
-      var windowHeight = $(window).height();
-
-      jQuery('.scroll-animation').not('.active').each(function () {
+    jQuery('.scroll-animation').not('.active').each(function(){
         var pos = $(this).offset().top;
 
-        if (scroll > pos - windowHeight) {
-          $(this).addClass("active");
+        if (scroll > pos - windowHeight){
+            $(this).addClass("active");
         }
-      });
-    }
-    $(window).scroll(function () {
-      scrollChk();
     });
-    $('body').on('touchmove', function () {
-      scrollChk();
-    });
-  </script>
+}
+$(window).scroll(function (){
+    scrollChk();
+});
+$('body').on('touchmove', function() {
+    scrollChk();
+});
+</script>
 
-  <script>
-    /*
-    Background Gradients From --
-    https://uigradients.com
-    */
-  </script>
+<script>
+/*
+Background Gradients From --
+https://uigradients.com
+*/
+</script>
 
-  <script>
-    $(function () {
-      const obj = $(".scroll-animation-obj");
-      const hopIn = $(".scroll-animation-hop");
-      const leftIn = $(".scroll-animation-left");
-      const rightIn = $(".scroll-animation-right");
-      $(window).on('scroll', function () {
-        obj.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'opacity': '1'
-            });
-          }
+<script>
+$(function(){
+  const obj = $(".scroll-animation-obj");
+  const hopIn = $(".scroll-animation-hop");
+  const leftIn = $(".scroll-animation-left");
+  const rightIn = $(".scroll-animation-right");
+  $(window).on('scroll',function(){
+    obj.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'opacity': '1'
         });
-        hopIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-        leftIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-        rightIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-      });
+      }
     });
-  </script>
+    hopIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+    leftIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+    rightIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+  });
+});
+</script>
 
-  <script>
-    $(function () {
-      const obj = $(".scroll-animation-obj_02");
-      const hopIn = $(".scroll-animation-hop_02");
-      const leftIn = $(".scroll-animation-left_02");
-      const rightIn = $(".scroll-animation-right_02");
-      $(window).on('scroll', function () {
-        obj.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'opacity': '0.2'
-            });
-          }
+<script>
+$(function(){
+  const obj = $(".scroll-animation-obj_02");
+  const hopIn = $(".scroll-animation-hop_02");
+  const leftIn = $(".scroll-animation-left_02");
+  const rightIn = $(".scroll-animation-right_02");
+  $(window).on('scroll',function(){
+    obj.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'opacity': '0.2'
         });
-        hopIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-        leftIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-        rightIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-      });
+      }
     });
-  </script>
-  <script>
-    $(function () {
-      const obj = $(".scroll-animation-obj_03");
-      const hopIn = $(".scroll-animation-hop_03");
-      const leftIn = $(".scroll-animation-left_03");
-      const rightIn = $(".scroll-animation-right_03");
-      $(window).on('scroll', function () {
-        obj.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'opacity': '0.2'
-            });
-          }
+    hopIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
         });
-        hopIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-        leftIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-        rightIn.each(function () {
-          const objPos = $(this).offset().top;
-          const scroll = $(window).scrollTop();
-          const windowH = $(window).height();
-          if (scroll > objPos - windowH) {
-            $(this).css({
-              'transform': 'translate(0,0)'
-            });
-          }
-        });
-      });
+      }
     });
-  </script>
-  <!-- アニメーション -->
+    leftIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+    rightIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+  });
+});
+</script>
+<script>
+$(function(){
+  const obj = $(".scroll-animation-obj_03");
+  const hopIn = $(".scroll-animation-hop_03");
+  const leftIn = $(".scroll-animation-left_03");
+  const rightIn = $(".scroll-animation-right_03");
+  $(window).on('scroll',function(){
+    obj.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'opacity': '0.2'
+        });
+      }
+    });
+    hopIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+    leftIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+    rightIn.each(function(){
+      const objPos = $(this).offset().top;
+      const scroll = $(window).scrollTop();
+      const windowH = $(window).height();
+      if(scroll > objPos - windowH){
+        $(this).css({
+          'transform': 'translate(0,0)'
+        });
+      }
+    });
+  });
+});
+</script>
+<!-- アニメーション -->
 
-  <!-- ドロワーメニューの利用宣言 -->
+<!-- ドロワーメニューの利用宣言 -->
   <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
       $('.drawer').drawer();
     });
   </script>
 
   <!-- MENUボタンの表示・非表示 -->
   <script type="text/javascript">
-    $(document).on('click', function (e) {
-      if (!$(e.target).closest('#menu_button').length) {
-        // ターゲット要素の外側をクリックした時の操作
-        $('#menu_button').slideDown();
-      } else {
-        // ターゲット要素をクリックした時の操作
-        $('#menu_button').slideUp();
-      }
-    });
-  </script>
+    $(document).on('click',function(e) {
+      if(!$(e.target).closest('#menu_button').length) {
+     // ターゲット要素の外側をクリックした時の操作
+     $('#menu_button').slideDown();
+ } else {
+     // ターゲット要素をクリックした時の操作
+     $('#menu_button').slideUp();
+ }
+});
+</script>
 
-  <!-- スライド  -->
-  <script>
-    var mySwiper = new Swiper('.swiper-container', {
+<!-- スライド  -->
+<script>
+  var mySwiper = new Swiper ('.swiper-container', {
       // ここからオプション
       loop: true,
       speed: 500,
       autoplay: {
         delay: 5000,
       },
-    })
-  </script>
+  })
+</script>
 
-  <!-- <link href=’http://fonts.googleapis.com/css?family=Patrick+Hand+SC’ rel=’stylesheet’ type=’text/css’> -->
+<!-- <link href=’http://fonts.googleapis.com/css?family=Patrick+Hand+SC’ rel=’stylesheet’ type=’text/css’> -->
 
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-  <script>
-    $(window).scroll(function () {
-      $('.details_02').each(function () {
+<script>
+    $(window).scroll(function (){
+      $('.details_02').each(function(){
         var elemPos = $(this).offset().top,
-          scroll = $(window).scrollTop(),
-          windowHeight = $(window).height();
-        if (scroll > elemPos - windowHeight + 100) {
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+        if (scroll > elemPos - windowHeight + 100){
           $(this).addClass('scrollin');
         }
       });
     });
-    $(window).scroll(function () {
-      $('.service_box2').each(function () {
+    $(window).scroll(function (){
+      $('.service_box2').each(function(){
         var elemPos = $(this).offset().top,
-          scroll = $(window).scrollTop(),
-          windowHeight = $(window).height();
-        if (scroll > elemPos - windowHeight + 100) {
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+        if (scroll > elemPos - windowHeight + 100){
           $(this).addClass('scrollin');
         }
       });
     });
-    $(window).scroll(function () {
-      $('.service_box3').each(function () {
+    $(window).scroll(function (){
+      $('.service_box3').each(function(){
         var elemPos = $(this).offset().top,
-          scroll = $(window).scrollTop(),
-          windowHeight = $(window).height();
-        if (scroll > elemPos - windowHeight + 100) {
+        scroll = $(window).scrollTop(),
+        windowHeight = $(window).height();
+        if (scroll > elemPos - windowHeight + 100){
           $(this).addClass('scrollin');
         }
       });
     });
-  </script>
+</script>
 
 </head>
-
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLT44FL" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PLT44FL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
 
-  　　
-  <!-- header -->
+	　　<!-- header -->
   <div id="container">
-    　　 <div class="cp_cont">
-      <div class="logo"></div>
+	　　	<div class="cp_cont">
+			<div class="logo"></div>
 
       <div class="menu_button_sp">
-        <div class="menu_button">
-          <p class="button"><a href="jump.html">
-              <!-- <img src="img/phone.png" class="logo_icon"> -->予約する
-            </a></p>
-        </div>
+  			<div class="menu_button">
+  				<p class="button"><a href="jump.html"><!-- <img src="img/phone.png" class="logo_icon"> -->予約する</a></p>
+  			</div>
       </div>
 
       <div class="menu_button_pc">
         <div class="menu_button">
-          <p class="button"><a href="jump.html">予約する
-              <!-- <br><img src="img/phone.png" class="logo_icon">048-295-0292 -->
-            </a></p>
+          <p class="button"><a href="jump.html">予約する<!-- <br><img src="img/phone.png" class="logo_icon">048-295-0292 --></a></p>
         </div>
       </div>
 
-      <!-- ハンバーガーメニュー -->
-      　 <input name="cp_menuicon" type="checkbox"><br>
-      <input type="checkbox" id="cp_toggle02" name="cp_menuicon">
-      <div class="cp_mobilebar">
-        <label for="cp_toggle02" class="cp_menuicon">
-          <span></span>
-        </label>
-      </div>
-      <header class="cp_offcm02">
-        <nav>
-          <ul class="pad">
-            <li><a class="openButton" href="#container"><input type="button" onclick="Click_Sub1(false)"
-                  class="link_box" value="TOP"></a></li>
-            <li><a class="openButton" href="#about"><input type="button" onclick="Click_Sub1(false)" class="link_box"
-                  value="ABOUT"></a></li>
-            <li><a class="openButton" href="#service"><input type="button" onclick="Click_Sub1(false)" class="link_box"
-                  value="SERVICE"></a></li>
-            <li><a class="openButton" href="#voice"><input type="button" onclick="Click_Sub1(false)" class="link_box"
-                  value="VOICE"></a></li>
-            <li><a class="openButton" href="#price"><input type="button" onclick="Click_Sub1(false)" class="link_box"
-                  value="MENU"></a></li>
-            <li><a class="openButton" href="#message"><input type="button" onclick="Click_Sub1(false)" class="link_box"
-                  value="MESSAGE"></a></li>
-            <li><a class="openButton" href="#contact"><input type="button" onclick="Click_Sub1(false)" class="link_box"
-                  value="CONTACT"></a></li>
-          </ul>
-        </nav>
-      </header>
-    </div>
+			<!-- ハンバーガーメニュー -->
+      　   <input name="cp_menuicon" type="checkbox"><br>
+			<input type="checkbox" id="cp_toggle02" name="cp_menuicon">
+			<div class="cp_mobilebar">
+				<label for="cp_toggle02" class="cp_menuicon">
+					<span></span>
+				</label>
+			</div>
+			<header class="cp_offcm02">
+				<nav>
+					<ul class="pad">
+						<li><a class="openButton" href="#container"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="TOP"></a></li>
+						<li><a class="openButton" href="#about"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="ABOUT"></a></li>
+						<li><a class="openButton" href="#service"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="SERVICE"></a></li>
+						<li><a class="openButton" href="#voice"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="VOICE"></a></li>
+						<li><a class="openButton" href="#price"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="MENU"></a></li>
+						<li><a class="openButton" href="#message"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="MESSAGE"></a></li>
+						<li><a class="openButton" href="#contact"><input type="button" onclick="Click_Sub1(false)" class="link_box"
+ value="CONTACT"></a></li>
+    					</ul>
+				</nav>
+			</header>
+		</div>
 
     <div id="clear"></div>
 
-    <!-- ファーストビュー  ここから-->
-    <div class="firstview_box_sp">
-      <div class="firstview_sp sp04">
-        <div class="back_sp04"></div>
-        <img src="img/fv_sp01.jpg">
-        <img src="img/fv_sp02.jpg">
-        <img src="img/fv_sp03.jpg">
-        <img src="img/fv_sp04.jpg">
+		<!-- ファーストビュー  ここから-->
+			<div class="firstview_box_sp">
+        <div class="firstview_sp sp04">
+          <div class="back_sp04"></div>
+          <img src="img/fv_sp01.jpg">
+          <img src="img/fv_sp02.jpg">
+          <img src="img/fv_sp03.jpg">
+          <img src="img/fv_sp04.jpg">
+         </div>
       </div>
-    </div>
 
-    <div class="firstview_box_pc">
-      <div class="firstview_pc pc04">
-        <div class="back_pc04"></div>
-        <img src="img/fv_pc01.jpg">
-        <img src="img/fv_pc02.jpg">
-        <img src="img/fv_pc03.jpg">
-        <img src="img/fv_pc04.jpg">
+      <div class="firstview_box_pc">
+        <div class="firstview_pc pc04">
+          <div class="back_pc04"></div>
+          <img src="img/fv_pc01.jpg">
+          <img src="img/fv_pc02.jpg">
+          <img src="img/fv_pc03.jpg">
+          <img src="img/fv_pc04.jpg">
+        </div>
       </div>
-    </div>
-    <!-- ファーストビュー  ここまで-->
+		<!-- ファーストビュー  ここまで-->
 
-    <!-- FV=box -->
-    <div id="fv_box">
-      <div class="fv_box">
-        心と体に極上の癒しを<br>～もみほぐし 足つぼ～
-      </div>
-    </div>
+		<!-- FV=box -->
+		<div id="fv_box">
+			<div class="fv_box">
+			心と体に極上の癒しを<br>～もみほぐし 足つぼ～
+			</div>
+		</div>
 
     <div id="clear"></div>
 
 
 
-    <!-- よくある悩み -->
-    <div id="worries">
+	<!-- よくある悩み -->
+		<div id="worries">
       <div class="worries_sp">
-        <div class="container_box">
-          <div class="worries_title">
-            <p class="tgt_worries" style="background: none;">こんなお悩み<br>ございませんか？</p>
-          </div>
+  	    <div class="container_box">
+    			<div class="worries_title">
+          	<p class="tgt_worries" style="background: none;">こんなお悩み<br>ございませんか？</p>
+    	    </div>
 
-          <div class="worries_01">
+    			<div class="worries_01">
             <p class="checkmark001">健康も美容もこだわりたい</p>
             <p class="checkmark001">ストレスが溜まっている</p>
             <p class="checkmark001">体のこわばり、むくみを解消したい</p>
             <p class="checkmark001">リフトアップし小顔になりたい</p>
             <p class="checkmark001">お肌のハリが気になる</p>
-          </div>
-        </div>
+    			</div>
+  		  </div>
       </div>
 
       <div class="worries_pc">
@@ -753,8 +739,7 @@
           </div>
         </div>
       </div>
-    </div>
-
+		</div>
     <!-- NOTICE -->
     <div class="notice" style="padding: 50px 0">
       <div class="container_box">
@@ -762,375 +747,360 @@
       </div>
     </div>
 
-
-    <!-- ABOUT -->
-    <div id="about">
+		<!-- ABOUT -->
+		<div id="about">
       <div class="about_ue"></div>
-      <div class="container_box">
-        <div class="about_title">
-          <p class="tgt_about">ABOUT</p>
-        </div>
+  	  <div class="container_box">
+      	<div class="about_title">
+  			  <p class="tgt_about">ABOUT</p>
+  			</div>
 
         <div class="about_all">
-          <div class="details_01">
-            <div class="details_img"></div>
-            <p class="details_title">
-              CalCalはエステ併設のリラクゼーションサロンなので、周りを気にせずゆったりとリラックスできる空間づくりをしております。年齢、男女問わず、心から体までリラクゼーションをご堪能頂けます。</p>
-          </div>
+    			<div class="details_01">
+            <div class="details_img"></div>  
+    				<p class="details_title">CalCalはエステ併設のリラクゼーションサロンなので、周りを気にせずゆったりとリラックスできる空間づくりをしております。年齢、男女問わず、心から体までリラクゼーションをご堪能頂けます。</p>
+    			</div>
 
-          <div class="details_02">
-            <div class="details_img2"></div>
-            <p class="details_title">ラフォスプレミアムでボディメイクから肌質改善まで、なりたいあなたに近づけます。脂肪燃焼・リフトアップ・美肌・代謝促進に効果が期待できます。</p>
-          </div>
+    			<div class="details_02">
+    				<div class="details_img2"></div>
+    				<p class="details_title">ラフォスプレミアムでボディメイクから肌質改善まで、なりたいあなたに近づけます。脂肪燃焼・リフトアップ・美肌・代謝促進に効果が期待できます。</p>
+    			</div>
         </div>
-      </div>
-    </div>
+  		</div>
+		</div>
 
-    <!-- SERVICE -->
-    <div id="service">
-      <div class="container_box">
-        <div class="service_title">
-          <p class="tgt_service">SERVICE</p>
-        </div>
+			 <!-- SERVICE -->
+	 	  	<div id="service">
+					<div class="container_box">
+	 	         <div class="service_title">
+	 	           <p class="tgt_service">SERVICE</p>
+						 </div>
 
-        <div class="service_box01_02">
-          <div class="service_box">
-            <div class="service_img01"></div>
-            <div class="mask">
-              <div class="service_naka">もみほぐし＆足つぼ</div>
-              <div class="service_cap01">疲れた体をほぐしてすっきりリフレッシュ！<br>痛気持ちいいくらいの「強もみ」もございます。
+             <div class="service_box01_02">
+  	 	        <div class="service_box">
+  	 	        	<div class="service_img01"></div>
+  	     	    	<div class="mask">
+                  <div class="service_naka">もみほぐし＆足つぼ</div>
+      	 		    	<div class="service_cap01">疲れた体をほぐしてすっきりリフレッシュ！<br>痛気持ちいいくらいの「強もみ」もございます。
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
 
-          <div class="service_box2">
-            <div class="service_img02"></div>
-            <div class="mask">
-              <div class="service_naka">エステ</div>
-              <div class="service_cap02">パーソナルにこだわった贅沢な空間と最高の技術力で新しい毎日の為に癒しのひとときを</div>
-            </div>
-          </div>
+  	 	        <div class="service_box2">
+  	 	        	<div class="service_img02"></div>
+  	     	    	<div class="mask">
+                  <div class="service_naka">エステ</div>
+  	 		    	    <div class="service_cap02">パーソナルにこだわった贅沢な空間と最高の技術力で新しい毎日の為に癒しのひとときを</div>
+  	            </div>
+  	          </div>
 
-          <div class="service_box3">
-            <div class="service_img03"></div>
-            <div class="mask">
-              <div class="service_naka">ラフォスプレミアム( ボディメイク) </div>
-              <div class="service_cap03">従来の高周波マシンを超えたハイパー高周波温熱機器を使用し、深部まで加温することでコリをほぐし、脂肪燃焼を促し基礎代謝をUPさせます。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="reservation">
-        <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-      </div>
-    </div>
-
-    <!-- goal -->
-    <div id="goal">
-      <div class="container_box">
-        <div class="goal_title">
-          <p class="tgt_goal">こんな方にオススメ</p>
-        </div>
-
-        <div class="goal_box">
-          <div class="goal_box03">リフトアップし<br>小顔になりたい方</div>
-          <div class="goal_box02">健康も美容も<br>こだわりたい方</div>
-          <div class="goal_box03">リラックスし<br>疲れをとりたい方</div>
-          <div class="goal_box02">むくみを<br>解消したい方</div>
-        </div>
-
-        <div class="goal_g"></div>
-      </div>
-    </div>
-
-
-    <!-- salon MENU or RECCOMEND -->
-    <div id="voice">
-      <div class="voice_title">
-        <p class="tgt_voice">VOICE</p>
-      </div>
-
-      <div class="voice_slider" id="voice_slider" data-width="100">
-        <button class="voice_next">
-          <div class="voice_arrow"></div>
-        </button>
-        <button class="voice_prev">
-          <div class="voice_arrow voice_flip"></div>
-        </button>
-
-        <ul>
-          <li class="voice_actslide">
-            <div class="slide" style="background: #ffffff">
-              <div class="voice_img"></div>
-              <div class="all_001">
-                <div class="voice_name">sfさん</div>
-                <div id="clear"></div>
-                <div class="voice_box">
-                  社会人になって1年かなり疲れていたところ、以前から気になっていたので行ってみました！<br>お店の雰囲気だけでも癒されます。<br>店長さんに長い時間マッサージしていただきました！恥ずかしながら気持ち良すぎて寝てしまいました、、、凄腕です！！長時間なのにずっと丁寧にしていただきありがとうございました！体が軽くなったので仕事頑張れそうです。これは通います！！！
+              <div class="service_box3">
+                <div class="service_img03"></div>
+                <div class="mask">
+                  <div class="service_naka">ラフォスプレミアム( ボディメイク) </div>
+                  <div class="service_cap03">従来の高周波マシンを超えたハイパー高周波温熱機器を使用し、深部まで加温することでコリをほぐし、脂肪燃焼を促し基礎代謝をUPさせます。</div>
                 </div>
               </div>
             </div>
-          </li>
+	        </div>
 
-          <li class="voice_actslide">
-            <div class="slide" style="background: #ffffff">
-              <div class="voice_img02"></div>
-              <div class="all_001">
-                <div class="voice_name02">しゃけさん</div>
-                <div id="clear"></div>
-                <div class="voice_box">
-                  ゴルフ後に何時も通ってます。<br>お店が綺麗で安心してリラックス出来ます！今回オイルマッサージ120分を受けました。<br>店長さん本当にサイコー！<br>身体がとろけそうに気持ちよかったです！！<br>又お願いしまーす！
+          <div id="reservation">
+            <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+          </div>
+        </div>
+
+					<!-- goal -->
+					<div id="goal">
+				    <div class="container_box">
+  						<div class="goal_title">
+    						<p class="tgt_goal">こんな方にオススメ</p>
+    					</div>
+
+						  <div class="goal_box">
+  							<div class="goal_box03">リフトアップし<br>小顔になりたい方</div>
+  							<div class="goal_box02">健康も美容も<br>こだわりたい方</div>
+  							<div class="goal_box03">リラックスし<br>疲れをとりたい方</div>
+  							<div class="goal_box02">むくみを<br>解消したい方</div>
+  						</div>
+
+              <div class="goal_g"></div>
+					  </div>
+					</div>
+
+
+						 <!-- salon MENU or RECCOMEND -->
+				<div id="voice">
+           	<div class="voice_title">
+			 			  <p class="tgt_voice">VOICE</p>
+            </div>
+
+	 			 		<div class="voice_slider" id="voice_slider"  data-width="100">
+	 			     <button class="voice_next"><div class="voice_arrow"></div></button>
+	 			      <button class="voice_prev"><div class="voice_arrow voice_flip"></div></button>
+
+	 			         <ul>
+	 			             <li class="voice_actslide">
+	 			                 <div class="slide" style="background: #ffffff" >
+													 <div class="voice_img"></div>
+                <div class="all_001">        
+								 <div class="voice_name">sfさん</div>
+                 <div id="clear"></div>
+	 			        <div class="voice_box">社会人になって1年かなり疲れていたところ、以前から気になっていたので行ってみました！<br>お店の雰囲気だけでも癒されます。<br>店長さんに長い時間マッサージしていただきました！恥ずかしながら気持ち良すぎて寝てしまいました、、、凄腕です！！長時間なのにずっと丁寧にしていただきありがとうございました！体が軽くなったので仕事頑張れそうです。これは通います！！！
                 </div>
               </div>
-            </div>
-          </li>
+	 			                 </div>
+	 			             </li>
 
-          <li class="voice_actslide">
-            <div class="slide" style="background: #ffffff">
-              <div class="voice_img03"></div>
-              <div class="all_001">
-                <div class="voice_name03">ohara yuriaさん</div>
-                <div id="clear"></div>
-                <div class="voice_box">
-                  たるみ、くすみが気になりラフォスフェイシャル受けました。デコルテからフェイシャルまで高周波の暖かさでめちゃめちゃ気持ち良かったです！！<br>終わった後のお肌のもちもち感はびっくりしました！たるみとくすみも効果ありです！<br>定期的に通いたいと思います！
-                </div>
-              </div>
-            </div>
-          </li>
+										 <li class="voice_actslide">
+	 			                 <div class="slide" style="background: #ffffff" >
+													 <div class="voice_img02"></div>
+                           <div class="all_001">
+								 <div class="voice_name02">しゃけさん</div>
+                 <div id="clear"></div>
+	 			        <div class="voice_box">ゴルフ後に何時も通ってます。<br>お店が綺麗で安心してリラックス出来ます！今回オイルマッサージ120分を受けました。<br>店長さん本当にサイコー！<br>身体がとろけそうに気持ちよかったです！！<br>又お願いしまーす！</div>
+                        </div>
+	 			                 </div>
+	 			             </li>
 
-          <li class="voice_actslide">
-            <div class="slide" style="background: #ffffff">
-              <div class="voice_img04"></div>
-              <div class="all_001">
-                <div class="voice_name04">ヤクルトレディさん</div>
-                <div id="clear"></div>
-                <div class="voice_box">
-                  すごい良かった！！仕事帰りに全身で1時間のコースを受けました。いろいろなお店に行っていますが、こんなにスッキリしたのは初めてかもしれません。これで1時間3800円は安すぎですね。<br>上手ですし、スタッフの方の物腰が柔らかく、心身共にほぐして頂きました。<br>地元にこんな素敵なお店ができて嬉しいです！！癒されました！！
-                </div>
+										 <li class="voice_actslide">
+	 			                 <div class="slide" style="background: #ffffff" >
+													 <div class="voice_img03"></div>
+                           <div class="all_001">
+								 <div class="voice_name03">ohara yuriaさん</div>
+                 <div id="clear"></div>
+	 			        <div class="voice_box">たるみ、くすみが気になりラフォスフェイシャル受けました。デコルテからフェイシャルまで高周波の暖かさでめちゃめちゃ気持ち良かったです！！<br>終わった後のお肌のもちもち感はびっくりしました！たるみとくすみも効果ありです！<br>定期的に通いたいと思います！</div>
               </div>
-            </div>
-          </li>
+	 			                 </div>
+	 			             </li>
 
-          <li class="voice_actslide">
-            <div class="slide" style="background: #ffffff">
-              <div class="voice_img05"></div>
-              <div class="all_001">
-                <div class="voice_name04">のんちゃんさん</div>
-                <div id="clear"></div>
-                <div class="voice_box">
-                  値段が安い割に、クオリティがとても高く、店の雰囲気も最高でした！！！<br>マッサージ屋さんで、こんなにゆったりしたエントランスははじめてでとてもいい感じ！<br>また、スタッフの対応もよく、仲良くなれそうで毎週行きたいです♪<br>癒やされに行きたい〜！
-                </div>
+                     <li class="voice_actslide">
+                         <div class="slide" style="background: #ffffff" >
+                           <div class="voice_img04"></div>
+                           <div class="all_001">
+                 <div class="voice_name04">ヤクルトレディさん</div>
+                 <div id="clear"></div>
+                <div class="voice_box">すごい良かった！！仕事帰りに全身で1時間のコースを受けました。いろいろなお店に行っていますが、こんなにスッキリしたのは初めてかもしれません。これで1時間3800円は安すぎですね。<br>上手ですし、スタッフの方の物腰が柔らかく、心身共にほぐして頂きました。<br>地元にこんな素敵なお店ができて嬉しいです！！癒されました！！</div>
               </div>
-            </div>
-          </li>
-        </ul>
-        <!-- <div class="voice_progress">
+                         </div>
+                     </li>
+
+                     <li class="voice_actslide">
+                         <div class="slide" style="background: #ffffff" >
+                           <div class="voice_img05"></div>
+                           <div class="all_001">
+                 <div class="voice_name04">のんちゃんさん</div>
+                 <div id="clear"></div>
+                <div class="voice_box">値段が安い割に、クオリティがとても高く、店の雰囲気も最高でした！！！<br>マッサージ屋さんで、こんなにゆったりしたエントランスははじめてでとてもいい感じ！<br>また、スタッフの対応もよく、仲良くなれそうで毎週行きたいです♪<br>癒やされに行きたい〜！</div>
+              </div>
+                         </div>
+                     </li>
+		              </ul>
+	 			         <!-- <div class="voice_progress">
 	 			             <div class="voice_bar"></div>
 	 			         </div> -->
-      </div>
-    </div>
+		 				</div>
+		    </div>
 
-    <div class="cal_all">
-      <div class="cal"></div>
-    </div>
+        <div class="cal_all">
+          <div class="cal"></div>
+        </div>
 
-    <!-- price -->
-    <div id="price">
-      <div class="price_sp">
-        <div class="container_box">
-          <div class="price_title">
-            <p class="tgt_price">MENU</p>
-          </div>
-
-          <div class="price_box01">
-            <div class="price_box_title01">もみほぐし</div>
-            <div class="price_img"></div>
-            <div class="momi_all">
-              <div class="momi">全身もみほぐし</div>
-              <div class="momi_naka">60分・・・・3,850円(税込)<br>90分・・・・5,500円(税込)<br>120分・・・・7,150円(税込)
-              </div>
-
-              <div class="momi">足つぼ（足湯付）</div>
-              <div class="momi_naka">45分・・・・3,300円(税込)<br>60分・・・・4,400円(税込)
-              </div>
-
-              <div class="momi">セットコース</div>
-              <div class="momi_naka">60分・・・・4,400円(税込)<br>90分・・・・6,050円(税込)<br>120分・・・・7,700円(税込)
-              </div>
-            </div>
-            <div class="ku_pon">
-              <div class="pon_all">
-                <div class="ku_title">お着替えの貸出</div>
-                <div class="ku_naka">お身体動かしやすい服装でご来店頂くか、お着替えご持参くださいますようお願い致します。</div>
-                <table>
-                  <tr>
-                    <th class="yu01">Ｔシャツ</th>
-                    <th class="yu02">50円(税込)</th>
-                  </tr>
-                  <tr>
-                    <th class="yu01">ズボン</th>
-                    <th class="yu02">50円(税込)</th>
-                  </tr>
-                  <tr>
-                    <th class="yu01">足ツボ　セットコース</th>
-                    <th class="yu02">半ズボン 無料</th>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <div id="clear"></div>
-
-          <div class="biki">
-            <div class="biki_01">
-              <div class="biki_naka">セットコース<br><span class="okok">初回300円引き</span><br>ご予約時にお伝えください</div>
-            </div>
-          </div>
-
-          <div id="clear"></div>
-
-          <div id="reservation">
-            <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-          </div>
-
-          <div class="price_box04">
-            <div class="price_box_title01">オイルマッサージ</div>
-            <div class="price_img04"></div>
-            <div class="momi_bu">メンズ・レディス専用個室で、ゆったりリラックスしながらリフレッシュ！<br>オイルの滑りにより、ハンドマッサージの心地よさを実感できます。</div>
-            <div class="momi_all">
-              <div class="momi_naka">60分　¥6,600（税込）
-              </div>
-
-              <div class="momi_naka">90分　¥9,900（税込）
-              </div>
-
-              <div class="momi_naka">120分　¥13,200（税込）
-              </div>
-            </div>
-          </div>
-
-          <div id="clear"></div>
-
-          <div class="biki">
-            <div class="biki_01">
-              <div class="biki_naka"><span class="okok">初回1000円引き</span><br>ご予約時にお伝えください</div>
-            </div>
-          </div>
-
-          <div id="clear"></div>
-
-          <div id="reservation">
-            <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-          </div>
-
-          <div class="price_box02">
-            <div class="price_box_title01">エステ</div>
-            <div class="price_img02"></div>
-            <div class="momi_all">
-              <div class="momi">スタンダードフェイスエステ</div>
-              <div class="momi_naka">60分　6,600円（税込）
-              </div>
-
-              <div class="momi">リフトアップフェイスエステ</div>
-              <div class="momi_naka">60分　11,000円（税込）
-              </div>
-
-              <div class="momi">リンパマッサージボディエステ</div>
-              <div class="momi_naka">120分　16,500円（税込）
-              </div>
-            </div>
-          </div>
-
-          <div id="clear"></div>
-
-          <div class="biki">
-            <div class="biki_01">
-              <div class="biki_naka"><span class="okok">初回1000円引き</span><br>ご予約時にお伝えください</div>
-            </div>
-          </div>
-
-          <div id="clear"></div>
-
-          <div id="reservation">
-            <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-          </div>
-
-          <div class="price_box03">
-            <div class="price_box_title01">ラフォスプレミアム</div>
-            <div class="price_img03"></div>
-            <div class="momi_all">
-              <div class="momi">ラフォスプレミアムボディ</div>
-              <div class="momi_naka">60分　¥16,500（税込）</div>
+		<!-- price -->
+		<div id="price">
+        <div class="price_sp">
+    	    <div class="container_box">
+      	    <div class="price_title">
+      			 <p class="tgt_price">MENU</p>
             </div>
 
-            <div class="momi">ラフォスプレミアムフェイシャル</div>
-            <div class="momi_naka">60分　¥11,000（税込）</div>
+      			<div class="price_box01">
+      				<div class="price_box_title01">もみほぐし</div>
+      		  	<div class="price_img"></div>
+              <div class="momi_all">
+                <div class="momi">全身もみほぐし</div>
+                <div class="momi_naka">60分・・・・3,850円(税込)<br>90分・・・・5,500円(税込)<br>120分・・・・7,150円(税込)
+                </div>
 
-            <div class="momi">ラフォスプレミアム+プロボディ</div>
-            <div class="momi_naka">合計120分　¥33,000（税込）
+                <div class="momi">足つぼ（足湯付）</div>
+                <div class="momi_naka">45分・・・・3,300円(税込)<br>60分・・・・4,400円(税込)
+                </div>
+
+                <div class="momi">セットコース</div>
+                <div class="momi_naka">60分・・・・4,400円(税込)<br>90分・・・・6,050円(税込)<br>120分・・・・7,700円(税込)
+                </div>
+              </div>
+              <div class="ku_pon">
+                <div class="pon_all">
+                  <div class="ku_title">お着替えの貸出</div>
+                  <div class="ku_naka">お身体動かしやすい服装でご来店頂くか、お着替えご持参くださいますようお願い致します。</div>
+                  <table>
+                    <tr>
+                      <th class="yu01">Ｔシャツ</th>
+                      <th class="yu02">50円(税込)</th>
+                    </tr>
+                    <tr>
+                      <th class="yu01">ズボン</th>
+                      <th class="yu02">50円(税込)</th>
+                    </tr>
+                    <tr>
+                      <th class="yu01">足ツボ　セットコース</th>
+                      <th class="yu02">半ズボン 無料</th>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+      		  </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka">セットコース<br><span class="okok">初回300円引き</span><br>ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+        		<div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+          	</div>
+
+            <div class="price_box04">
+                <div class="price_box_title01">オイルマッサージ</div>
+              <div class="price_img04"></div>
+              <div class="momi_bu">メンズ・レディス専用個室で、ゆったりリラックスしながらリフレッシュ！<br>オイルの滑りにより、ハンドマッサージの心地よさを実感できます。</div>
+              <div class="momi_all">
+                <div class="momi_naka">60分　¥6,600（税込）
+                </div>
+
+                <div class="momi_naka">90分　¥9,900（税込）
+                </div>
+
+                <div class="momi_naka">120分　¥13,200（税込）
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka"><span class="okok">初回1000円引き</span><br>ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+            </div>
+
+            <div class="price_box02">
+              <div class="price_box_title01">エステ</div>
+              <div class="price_img02"></div>
+              <div class="momi_all">
+                <div class="momi">スタンダードフェイスエステ</div>
+                <div class="momi_naka">60分　6,600円（税込）
+                </div>
+
+                <div class="momi">リフトアップフェイスエステ</div>
+                <div class="momi_naka">60分　11,000円（税込）
+                </div>
+
+                <div class="momi">リンパマッサージボディエステ</div>
+                <div class="momi_naka">120分　16,500円（税込）
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka"><span class="okok">初回1000円引き</span><br>ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+            </div>
+
+            <div class="price_box03">
+              <div class="price_box_title01">ラフォスプレミアム</div>
+              <div class="price_img03"></div>
+              <div class="momi_all">
+                <div class="momi">ラフォスプレミアムボディ</div>
+                <div class="momi_naka">60分　¥16,500（税込）</div>
+                </div>
+
+                <div class="momi">ラフォスプレミアムフェイシャル</div>
+                <div class="momi_naka">60分　¥11,000（税込）</div>
+
+                <div class="momi">ラフォスプレミアム+プロボディ</div>
+                <div class="momi_naka">合計120分　¥33,000（税込）
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka">ラフォスプレミアムボディ<br><span class="okok">初回5000円引き</span><br>ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div class="biki02">
+              <div class="biki_01">
+                <div class="biki_naka">ラフォスプレミアムフェイシャル<br><span class="okok">初回1000円引き</span><br>ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
             </div>
           </div>
         </div>
 
-        <div id="clear"></div>
-
-        <div class="biki">
-          <div class="biki_01">
-            <div class="biki_naka">ラフォスプレミアムボディ<br><span class="okok">初回5000円引き</span><br>ご予約時にお伝えください</div>
-          </div>
-        </div>
-
-        <div class="biki02">
-          <div class="biki_01">
-            <div class="biki_naka">ラフォスプレミアムフェイシャル<br><span class="okok">初回1000円引き</span><br>ご予約時にお伝えください</div>
-          </div>
-        </div>
-
-        <div id="clear"></div>
-
-        <div id="reservation">
-          <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-        </div>
-      </div>
-    </div>
 
 
 
 
-
-    <div class="price_pc">
-      <div class="container_box">
-        <div class="price_title">
-          <p class="tgt_price">MENU</p>
-        </div>
-
-        <div class="price_box01">
-          <div class="price_box_title01">もみほぐし</div>
-          <div class="price_img"></div>
-          <div class="momi_all">
-            <div class="momi">全身もみほぐし</div>
-            <div class="momi_naka02">60分・・・・3,850円（税込）<br>90分・・・・5,500円（税込）<br>120分・・・・7,150円（税込）
+        <div class="price_pc">
+          <div class="container_box">
+            <div class="price_title">
+             <p class="tgt_price">MENU</p>
             </div>
 
-            <div class="momi">足つぼ（足湯付）</div>
-            <div class="momi_naka02">45分・・・・3,300円（税込）<br>60分・・・・4,400円（税込）
-            </div>
+            <div class="price_box01">
+              <div class="price_box_title01">もみほぐし</div>
+              <div class="price_img"></div>
+              <div class="momi_all">
+                <div class="momi">全身もみほぐし</div>
+                <div class="momi_naka02">60分・・・・3,850円（税込）<br>90分・・・・5,500円（税込）<br>120分・・・・7,150円（税込）
+                </div>
 
-            <div class="momi">セットコース</div>
-            <div class="momi_naka02">60分・・・・4,400円（税込）<br>90分・・・・6,050円（税込）<br>120分・・・・7,700円（税込）
-            </div>
-          </div>
+                <div class="momi">足つぼ（足湯付）</div>
+                <div class="momi_naka02">45分・・・・3,300円（税込）<br>60分・・・・4,400円（税込）
+                </div>
 
-          <div id="clear"></div>
+                <div class="momi">セットコース</div>
+                <div class="momi_naka02">60分・・・・4,400円（税込）<br>90分・・・・6,050円（税込）<br>120分・・・・7,700円（税込）
+                </div>
+              </div>
 
-          <div class="ku_pon">
-            <div class="pon_all">
-              <div class="ku_title">お着替えの貸出</div>
-              <div class="ku_naka">お身体動かしやすい服装でご来店頂くか、お着替えご持参くださいますようお願い致します。</div>
-              <div class="yu03">Ｔシャツ 50円（税込）/　ズボン 50円（税込）<br>　足ツボ　セットコースの半ズボンは無料</div>
-              <!-- <table class="ku_tb">
+              <div id="clear"></div>
+
+              <div class="ku_pon">
+                <div class="pon_all">
+                  <div class="ku_title">お着替えの貸出</div>
+                  <div class="ku_naka">お身体動かしやすい服装でご来店頂くか、お着替えご持参くださいますようお願い致します。</div>
+                  <div class="yu03">Ｔシャツ 50円（税込）/　ズボン 50円（税込）<br>　足ツボ　セットコースの半ズボンは無料</div>
+                  <!-- <table class="ku_tb">
                     <tr>
                       <th class="yu01">Ｔシャツ</th>
                       <th class="yu02">50円(税込)</th>
@@ -1144,198 +1114,191 @@
                       <th class="yu02">半ズボン 無料</th>
                     </tr>
                   </table> -->
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka">セットコース　<span class="okok">初回300円引き</span>　ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+            </div>
+
+            <div class="price_box04">
+                <div class="price_box_title01">オイルマッサージ</div>
+              <div class="price_img04"></div>
+              <div class="momi_bu">メンズ・レディス専用個室で、ゆったりリラックスしながらリフレッシュ！<br>オイルの滑りにより、ハンドマッサージの心地よさを実感できます。</div>
+              <div class="momi_all">
+                <div class="momi_naka">60分　¥6,600（税込）
+                </div>
+
+                <div class="momi_naka">90分　¥9,900（税込）
+                </div>
+
+                <div class="momi_naka">120分　¥13,200（税込）
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka"><span class="okok">初回1000円引き</span>　ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+            </div>
+
+            <div class="price_box02">
+              <div class="price_box_title01">エステ</div>
+              <div class="price_img02"></div>
+              <div class="momi_all">
+                <div class="momi">スタンダードフェイスエステ</div>
+                <div class="momi_naka">60分　6,600円（税込）
+                </div>
+
+                <div class="momi">リフトアップフェイスエステ</div>
+                <div class="momi_naka">60分　11,000円（税込）
+                </div>
+
+                <div class="momi">リンパマッサージボディエステ</div>
+                <div class="momi_naka">120分　16,500円（税込）
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka"><span class="okok">初回1000円引き</span>　ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+            </div>
+
+            <div class="price_box03">
+              <div class="price_box_title01">ラフォスプレミアム</div>
+              <div class="price_img03"></div>
+              <div class="momi_all">
+                <div class="momi">ラフォスプレミアムボディ</div>
+                <div class="momi_naka">60分　¥16,500（税込）
+                </div>
+
+                <div class="momi">ラフォスプレミアムフェイシャル</div>
+                <div class="momi_naka">60分　¥11,000（税込）
+                </div>
+
+                <div class="momi">ラフォスプレミアム+プロボディ</div>
+                <div class="momi_naka">合計120分　¥33,000（税込）
+                </div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div class="biki">
+              <div class="biki_01">
+                <div class="biki_naka">ラフォスプレミアムボディ　<span class="okok">初回5000円引き</span>　ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div class="biki02">
+              <div class="biki_01">
+                <div class="biki_naka">ラフォスプレミアムフェイシャル　<span class="okok">初回1000円引き</span>　ご予約時にお伝えください</div>
+              </div>
+            </div>
+
+            <div id="clear"></div>
+
+            <div id="reservation">
+              <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
             </div>
           </div>
         </div>
+	</div>
 
-        <div id="clear"></div>
 
-        <div class="biki">
-          <div class="biki_01">
-            <div class="biki_naka">セットコース　<span class="okok">初回300円引き</span>　ご予約時にお伝えください</div>
-          </div>
+
+		  <!-- MESSAGE -->
+			<div id="message">
+        <div class="message_sp">
+  				<div class="container_box">
+  			    <div class="message_title">
+  					<p class="tgt_message">MESSAGE</p></div>
+
+  					<div class="message_box">
+  	     			<div class="message_img"></div>
+  						<div class="message">リラクゼーションサロン カルカル 店長の高﨑です。<br><br>“心と体に極上の癒しを”コンセプトにオープンしました。<br>もみほぐしやリンパマッサージでお体を整えていただきながら、BGM、内装、照明等すべてにリラクゼーション効果を施しております。<br>その日の体調や気分で選べる様々なコースをご用意、ご来店いただいたその瞬間からリラックスしていただけると思います。<br><br>また、店内に異空間を作る事でエステともみほぐし、足つぼ…と、女性、男性ともにお過ごしいただけるようにいたしました。<br>ご夫婦で来店いただき、ご主人様はもみほぐし奥様は極上エステなんていかがでしょうか。<br><br>ゆったりとした充実の時をどうぞお過ごし下さませ。<br>心よりお待ちしております。</div>
+       			</div>
+  	    	</div>
         </div>
 
-        <div id="clear"></div>
+         <div class="message_pc">
+          <div class="container_box">
+            <div class="message_title">
+            <p class="tgt_message">MESSAGE</p></div>
 
-        <div id="reservation">
-          <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-        </div>
-
-        <div class="price_box04">
-          <div class="price_box_title01">オイルマッサージ</div>
-          <div class="price_img04"></div>
-          <div class="momi_bu">メンズ・レディス専用個室で、ゆったりリラックスしながらリフレッシュ！<br>オイルの滑りにより、ハンドマッサージの心地よさを実感できます。</div>
-          <div class="momi_all">
-            <div class="momi_naka">60分　¥6,600（税込）
-            </div>
-
-            <div class="momi_naka">90分　¥9,900（税込）
-            </div>
-
-            <div class="momi_naka">120分　¥13,200（税込）
-            </div>
-          </div>
-        </div>
-
-        <div id="clear"></div>
-
-        <div class="biki">
-          <div class="biki_01">
-            <div class="biki_naka"><span class="okok">初回1000円引き</span>　ご予約時にお伝えください</div>
-          </div>
-        </div>
-
-        <div id="clear"></div>
-
-        <div id="reservation">
-          <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-        </div>
-
-        <div class="price_box02">
-          <div class="price_box_title01">エステ</div>
-          <div class="price_img02"></div>
-          <div class="momi_all">
-            <div class="momi">スタンダードフェイスエステ</div>
-            <div class="momi_naka">60分　6,600円（税込）
-            </div>
-
-            <div class="momi">リフトアップフェイスエステ</div>
-            <div class="momi_naka">60分　11,000円（税込）
-            </div>
-
-            <div class="momi">リンパマッサージボディエステ</div>
-            <div class="momi_naka">120分　16,500円（税込）
+            <div class="message_box">
+              <div class="message_img"></div>
+              <div class="message">リラクゼーションサロン カルカル 店長の高﨑です。<br><br>“心と体に極上の癒しを”コンセプトにオープンしました。<br>もみほぐしやリンパマッサージでお体を整えていただきながら、BGM、内装、照明等すべてにリラクゼーション効果を施しております。その日の体調や気分で選べる様々なコースをご用意、ご来店いただいたその瞬間からリラックスしていただけると思います。<br><br>また、店内に異空間を作る事でエステともみほぐし、足つぼ…と、女性、男性ともにお過ごしいただけるようにいたしました。<br>ご夫婦で来店いただき、ご主人様はもみほぐし奥様は極上エステなんていかがでしょうか。<br><br>ゆったりとした充実の時をどうぞお過ごし下さませ。<br>心よりお待ちしております。</div>
             </div>
           </div>
         </div>
+	   	</div>
 
-        <div id="clear"></div>
+      <div class="message_sita"></div>
 
-        <div class="biki">
-          <div class="biki_01">
-            <div class="biki_naka"><span class="okok">初回1000円引き</span>　ご予約時にお伝えください</div>
-          </div>
-        </div>
+		<!-- お問い合わせ -->
+			<div id="contact">
+     	       <div class="container_box">
 
-        <div id="clear"></div>
-
-        <div id="reservation">
-          <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-        </div>
-
-        <div class="price_box03">
-          <div class="price_box_title01">ラフォスプレミアム</div>
-          <div class="price_img03"></div>
-          <div class="momi_all">
-            <div class="momi">ラフォスプレミアムボディ</div>
-            <div class="momi_naka">60分　¥16,500（税込）
-            </div>
-
-            <div class="momi">ラフォスプレミアムフェイシャル</div>
-            <div class="momi_naka">60分　¥11,000（税込）
-            </div>
-
-            <div class="momi">ラフォスプレミアム+プロボディ</div>
-            <div class="momi_naka">合計120分　¥33,000（税込）
-            </div>
-          </div>
-        </div>
-
-        <div id="clear"></div>
-
-        <div class="biki">
-          <div class="biki_01">
-            <div class="biki_naka">ラフォスプレミアムボディ　<span class="okok">初回5000円引き</span>　ご予約時にお伝えください</div>
-          </div>
-        </div>
-
-        <div class="biki02">
-          <div class="biki_01">
-            <div class="biki_naka">ラフォスプレミアムフェイシャル　<span class="okok">初回1000円引き</span>　ご予約時にお伝えください</div>
-          </div>
-        </div>
-
-        <div id="clear"></div>
-
-        <div id="reservation">
-          <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  <!-- MESSAGE -->
-  <div id="message">
-    <div class="message_sp">
-      <div class="container_box">
-        <div class="message_title">
-          <p class="tgt_message">MESSAGE</p>
-        </div>
-
-        <div class="message_box">
-          <div class="message_img"></div>
-          <div class="message">リラクゼーションサロン カルカル
-            店長の高﨑です。<br><br>“心と体に極上の癒しを”コンセプトにオープンしました。<br>もみほぐしやリンパマッサージでお体を整えていただきながら、BGM、内装、照明等すべてにリラクゼーション効果を施しております。<br>その日の体調や気分で選べる様々なコースをご用意、ご来店いただいたその瞬間からリラックスしていただけると思います。<br><br>また、店内に異空間を作る事でエステともみほぐし、足つぼ…と、女性、男性ともにお過ごしいただけるようにいたしました。<br>ご夫婦で来店いただき、ご主人様はもみほぐし奥様は極上エステなんていかがでしょうか。<br><br>ゆったりとした充実の時をどうぞお過ごし下さませ。<br>心よりお待ちしております。
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="message_pc">
-      <div class="container_box">
-        <div class="message_title">
-          <p class="tgt_message">MESSAGE</p>
-        </div>
-
-        <div class="message_box">
-          <div class="message_img"></div>
-          <div class="message">リラクゼーションサロン カルカル
-            店長の高﨑です。<br><br>“心と体に極上の癒しを”コンセプトにオープンしました。<br>もみほぐしやリンパマッサージでお体を整えていただきながら、BGM、内装、照明等すべてにリラクゼーション効果を施しております。その日の体調や気分で選べる様々なコースをご用意、ご来店いただいたその瞬間からリラックスしていただけると思います。<br><br>また、店内に異空間を作る事でエステともみほぐし、足つぼ…と、女性、男性ともにお過ごしいただけるようにいたしました。<br>ご夫婦で来店いただき、ご主人様はもみほぐし奥様は極上エステなんていかがでしょうか。<br><br>ゆったりとした充実の時をどうぞお過ごし下さませ。<br>心よりお待ちしております。
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="message_sita"></div>
-
-  <!-- お問い合わせ -->
-  <div id="contact">
-    <div class="container_box">
-
-      <div class="contact_box">
-        <div class="contact_title">
-          <p class="tgt_contact" style="background: none;">CONTACT</p>
-        </div>
+				 <div class="contact_box">
+	   			<div class="contact_title">
+			<p class="tgt_contact" style="background: none;">CONTACT</p></div>
 
         <div class="c_logo"></div>
 
-        <table border="0">
-          <tr>
-            <td class="access_td">サロン名</td>
-            <td>リラクゼーションサロンCalCal</td>
-          </tr>
-          <tr>
-            <td class="access_td">電話番号</td>
-            <td>
-              <a href="tel:0433086665">043-308-6665</a>
-            </td>
-          </tr>
-          <tr>
-            <td class="access_td">営業時間</td>
-            <td>10:00～25:30 / 最終受付 24:30</td>
-          </tr>
-          <tr>
-            <td class="access_td">定休日</td>
-            <td>年中無休</td>
-          </tr>
-          <tr>
-            <td class="access_td">住所</td>
-            <td>〒267-0066<br>千葉県千葉市緑区あすみが丘<br>３丁目１−８</td>
-          </tr>
+				<table border="0">
+					<tr>
+						<td class="access_td">サロン名</td>
+						<td>リラクゼーションサロンCalCal</td>
+					</tr>
+					<tr>
+						<td class="access_td">電話番号</td>
+						<td>
+							<a href="tel:0433086665">043-308-6665</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="access_td">営業時間</td>
+						<td>10:00～25:30 / 最終受付 24:30</td>
+					</tr>
+					<tr>
+						<td class="access_td">定休日</td>
+						<td>年中無休</td>
+					</tr>
+					<tr>
+						<td class="access_td">住所</td>
+						<td>〒267-0066<br>千葉県千葉市緑区あすみが丘<br>３丁目１−８</td>
+					</tr>
           <tr>
             <td class="access_td">駐車場</td>
             <td>10台完備</td>
@@ -1344,25 +1307,20 @@
             <td class="access_td">アクセス</td>
             <td>JR外房線 土気駅より徒歩5分<br>千葉興行銀行となり。</td>
           </tr>
-        </table>
+					</table>
 
-        <!-- Google Map  ( width="100%" height="auto" に変更する)-->
-        <div class="map">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3246.8823804750386!2d140.26898074180758!3d35.531904182106295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602295e3139928c7%3A0x18e002f156d17ed3!2z5Y2D6JGJ5biC44Oq44OV44Os44Kv44K944Ot44K444O8772e44Oq44Op44Kv44K844O844K344On44Oz44K144Ot44OzQ2FsQ2Fs772e5Y2D6JGJ5biC772c44Oq44OV44Os44Kv44K944Ot44K444O8772c44GK44GZ44GZ44KB!5e0!3m2!1sja!2sjp!4v1627267315695!5m2!1sja!2sjp"
-            width="600" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
-            tabindex="0"></iframe>
-          　
-        </div>
+					<!-- Google Map  ( width="100%" height="auto" に変更する)-->
+					<div class="map">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3246.8823804750386!2d140.26898074180758!3d35.531904182106295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x602295e3139928c7%3A0x18e002f156d17ed3!2z5Y2D6JGJ5biC44Oq44OV44Os44Kv44K944Ot44K444O8772e44Oq44Op44Kv44K844O844K344On44Oz44K144Ot44OzQ2FsQ2Fs772e5Y2D6JGJ5biC772c44Oq44OV44Os44Kv44K944Ot44K444O8772c44GK44GZ44GZ44KB!5e0!3m2!1sja!2sjp!4v1627267315695!5m2!1sja!2sjp" width="600" height="350" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+					　 </div>
+				    </div>
+					</div>
+
+					<!-- #予約ボタン -->
+						<div id="reservation">
+					     <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
+						</div>
+				 </div>
       </div>
-    </div>
-
-    <!-- #予約ボタン -->
-    <div id="reservation">
-      <p class="mein_btn"><a href="jump.html">ご予約お問い合わせはこちら</a></p>
-    </div>
-  </div>
-  </div>
 </body>
-
 </html>
