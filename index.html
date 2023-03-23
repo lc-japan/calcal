@@ -1,552 +1,552 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-PLT44FL');</script>
   <!-- End Google Tag Manager -->
 
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<!-- drawer.css -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/css/drawer.min.css">
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <!-- drawer.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/css/drawer.min.css">
 
-	<!-- jquery & iScroll -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
-	<!-- drawer.js -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/js/drawer.min.js"></script>
+  <!-- jquery & iScroll -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
+  <!-- drawer.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.1/js/drawer.min.js"></script>
 
   <!-- script.js -->
-	<script src="bbb.js"></script>
+  <script src="bbb.js"></script>
 
-	<title>calcal(カルカル)</title>
-	<link rel="stylesheet" type="text/css" id="applicationStylesheet" href="style.css">
+  <title>calcal(カルカル)</title>
+  <link rel="stylesheet" type="text/css" id="applicationStylesheet" href="style.css">
 
-<!-- ハンバーガーメニュー 自動開閉 -->
-<script>
-$(function () {
-    var ua = navigator.userAgent;
-    if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
-$(function () {
-    $('.cp_menuicon').on('click', () => {
-        $('.cp_offcm02').show();
-    });
-});
+  <!-- ハンバーガーメニュー 自動開閉 -->
+  <script>
+  $(function () {
+      var ua = navigator.userAgent;
+      if ((ua.indexOf('iPhone') > 0 || ua.indexOf('Android') > 0) && ua.indexOf('Mobile') > 0) {
+  $(function () {
+      $('.cp_menuicon').on('click', () => {
+          $('.cp_offcm02').show();
+      });
+  });
 
-$(function () {
-    $('.openButton').on('click', () => {
-        $('.cp_offcm02').slideUp();
-    });
-});
+  $(function () {
+      $('.openButton').on('click', () => {
+          $('.cp_offcm02').slideUp();
+      });
+  });
+      }
+  })
+  </script>
+  <script language="Javascript">
+  function Click_Sub1(check) {
+      for(i = 0; i < document.all.cp_menuicon.length; i++){
+          document.all.cp_menuicon[i].checked = check;
+      }
+  }
+  </script>
+
+  <!-- おすすめメニューバー -->
+  <script>
+  //Based on https://codepen.io/zuraizm/pen/vGDHl pen by zuraiz
+  jQuery(document).ready(function ($) {
+    if (window.matchMedia( '(max-width: 999999999px)' ).matches) {
+      startSlider($('#voice_slider'), 30); // Slide container ID, SlideShow interval
+      function startSlider(obj, timer) {
+          var obj, timer;
+          var id = "#"+obj.attr("id");
+          var slideCount = obj.find('ul li').length;
+          slideWidth = obj.attr("data-width");
+          var sliderUlWidth = (slideCount+1) * slideWidth;
+          // var time = 2;
+          var $bar,
+          isPause,
+          tick,
+          percentTime;
+          isPause = false; //false for auto slideshow
+          $bar = obj.find('.voice_progress .voice_bar');
+
+          function startProgressbar() {
+              resetProgressbar();
+              percentTime = 0;
+              tick = setInterval(interval, timer);
+          }
+
+          function interval() {
+              if (isPause === false) {
+                percentTime += 1 / (time + 0.1);
+                $bar.css({
+                  width: percentTime + "%"
+                });
+                if (percentTime >= 100) {
+                  moveRight();
+                  startProgressbar();
+                }
+              }
+          }
+
+          function resetProgressbar() {
+              $bar.css({
+                width: 0 + '%'
+              });
+              clearTimeout(tick);
+          }
+
+          function startslide() {
+              $(id+' ul li:last-child').prependTo(id+' ul');
+              obj.find('ul').css({ width: sliderUlWidth+'vw', marginLeft: - slideWidth+'vw' });
+              obj.find('ul li:last-child').appendTo(obj.attr('id')+' ul');
+          }
+
+          if (slideCount>1) {
+              startslide();
+              startProgressbar();
+          }
+          else { // hade navigation buttons for 1 slide only
+              $(id+' button.voice_prev').hide();
+              $(id+' button.voice_next').hide();
+          }
+
+          function moveLeft() {
+            $(id+' ul').css( { transition: "1s",
+                    transform:  "translateX(" + slideWidth + "vw)"
+              });
+
+              setTimeout( function() {
+                  $(id+' ul li:last-child').prependTo(id+' ul');
+                  $(id+' ul').css( { transition: "none",
+                    transform:  "translateX(" + 0 + "vw)"
+                  });
+
+                  $('li.voice_actslide').prev().addClass('actslide').next().removeClass('actslide');
+              }, 1000 );
+          }
+
+          function moveRight2() { // fix for only 2 slades
+            $(id+' ul li:first-child').appendTo(id+' ul');
+  　　   $(id+' ul').css( { transition: "none", transform:  "translateX(100vw)"}).delay();
+
+            setTimeout( function() {
+                      $(id+' ul').css( { transition: "1s", transform:  "translateX(0vw)" });
+                  }, 100, setTimeout( function() {
+
+  $(id+' ul').css( { transition: "none", transform:  "translateX(0vw)" });
+  $('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
+                  }, 1000 )  );
+          }
+
+          function moveRight() {
+              if (slideCount>2) {
+                    $(id+' ul').css( { transition: "1s",
+                    transform:  "translateX(" + (-1)*slideWidth + "vw)"
+                  });
+
+                  setTimeout( function() {
+                      $(id+' ul li:first-child').appendTo(id+' ul');
+                      $(id+' ul').css( { transition: "none",
+                        transform:  "translateX(" + 0 + "vw)"
+                      });
+
+                      $('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
+                  }, 1000 );
+              }
+              else {
+                  moveRight2();
+              }
+          }
+
+          $(id+' button.voice_prev').click(function () {
+              moveLeft();
+              startProgressbar();
+          });
+
+          $(id+' button.voice_next').click(function () {
+                moveRight();
+                startProgressbar();
+          });
+
+          $(id+' .voice_progress').click(function() {
+              if (isPause === false) {
+                  isPause = true;
+              }
+              else {
+                  isPause = false;
+              }
+        });
     }
-})
-</script>
-<script language="Javascript">
-function Click_Sub1(check) {
-    for(i = 0; i < document.all.cp_menuicon.length; i++){
-        document.all.cp_menuicon[i].checked = check;
-    }
-}
-</script>
-
-<!-- おすすめメニューバー -->
-<script>
-//Based on https://codepen.io/zuraizm/pen/vGDHl pen by zuraiz
-jQuery(document).ready(function ($) {
-	if (window.matchMedia( '(max-width: 999999999px)' ).matches) {
-		startSlider($('#voice_slider'), 30); // Slide container ID, SlideShow interval
-		function startSlider(obj, timer) {
-				var obj, timer;
-				var id = "#"+obj.attr("id");
-				var slideCount = obj.find('ul li').length;
-				slideWidth = obj.attr("data-width");
-				var sliderUlWidth = (slideCount+1) * slideWidth;
-				// var time = 2;
-				var $bar,
-				isPause,
-				tick,
-				percentTime;
-				isPause = false; //false for auto slideshow
-				$bar = obj.find('.voice_progress .voice_bar');
-
-				function startProgressbar() {
-						resetProgressbar();
-						percentTime = 0;
-						tick = setInterval(interval, timer);
-				}
-
-				function interval() {
-						if (isPause === false) {
-							percentTime += 1 / (time + 0.1);
-							$bar.css({
-								width: percentTime + "%"
-							});
-							if (percentTime >= 100) {
-								moveRight();
-								startProgressbar();
-							}
-						}
-				}
-
-				function resetProgressbar() {
-						$bar.css({
-							width: 0 + '%'
-						});
-						clearTimeout(tick);
-				}
-
-				function startslide() {
-						$(id+' ul li:last-child').prependTo(id+' ul');
-						obj.find('ul').css({ width: sliderUlWidth+'vw', marginLeft: - slideWidth+'vw' });
-						obj.find('ul li:last-child').appendTo(obj.attr('id')+' ul');
-				}
-
-				if (slideCount>1) {
-						startslide();
-						startProgressbar();
-				}
-				else { // hade navigation buttons for 1 slide only
-						 $(id+' button.voice_prev').hide();
-						 $(id+' button.voice_next').hide();
-				}
-
-				function moveLeft() {
-					 $(id+' ul').css( { transition: "1s",
-									transform:  "translateX(" + slideWidth + "vw)"
-						});
-
-						setTimeout( function() {
-								$(id+' ul li:last-child').prependTo(id+' ul');
-								$(id+' ul').css( { transition: "none",
-									transform:  "translateX(" + 0 + "vw)"
-								});
-
-								$('li.voice_actslide').prev().addClass('actslide').next().removeClass('actslide');
-						}, 1000 );
-				}
-
-				function moveRight2() { // fix for only 2 slades
-					$(id+' ul li:first-child').appendTo(id+' ul');
-　　   $(id+' ul').css( { transition: "none", transform:  "translateX(100vw)"}).delay();
-
-					setTimeout( function() {
-										$(id+' ul').css( { transition: "1s", transform:  "translateX(0vw)" });
-								}, 100, setTimeout( function() {
-
-$(id+' ul').css( { transition: "none", transform:  "translateX(0vw)" });
-$('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
-								}, 1000 )  );
-				}
-
-				function moveRight() {
-						if (slideCount>2) {
-									$(id+' ul').css( { transition: "1s",
-									transform:  "translateX(" + (-1)*slideWidth + "vw)"
-								});
-
-								setTimeout( function() {
-										$(id+' ul li:first-child').appendTo(id+' ul');
-										$(id+' ul').css( { transition: "none",
-											transform:  "translateX(" + 0 + "vw)"
-										});
-
-										$('li.actslide').next().addClass('actslide').prev().removeClass('actslide');
-								}, 1000 );
-						}
-						else {
-								moveRight2();
-						}
-				}
-
-				$(id+' button.voice_prev').click(function () {
-						moveLeft();
-						startProgressbar();
-				});
-
-				$(id+' button.voice_next').click(function () {
-							moveRight();
-							startProgressbar();
-				});
-
-				$(id+' .voice_progress').click(function() {
-						if (isPause === false) {
-								isPause = true;
-						}
-						else {
-								isPause = false;
-						}
-			});
-	}
-	};
-});
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
-<!-- worries -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_worries span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_worries").offset().top) return;
-
-    // ここで文字を<span></span>で囲む
-    $('.tgt_worries').children().andSelf().contents().each(function() {
-        if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
-        }
-    });
-
-    // 一文字ずつフェードインさせる
-    $('.tgt_worries').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_worries').children().size(); i++) {
-        $('.tgt_worries').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
     };
-});
-</script>
+  });
+  </script>
 
-<!-- ABOUT -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_about span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_about").offset().top) return;
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js" type="text/javascript"></script>
+  <!-- worries -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_worries span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_worries").offset().top) return;
 
-    // ここで文字を<span></span>で囲む
-    $('.tgt_about').children().andSelf().contents().each(function() {
+      // ここで文字を<span></span>で囲む
+      $('.tgt_worries').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_worries').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_worries').children().size(); i++) {
+          $('.tgt_worries').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+  <!-- ABOUT -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_about span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_about").offset().top) return;
+
+      // ここで文字を<span></span>で囲む
+      $('.tgt_about').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_about').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_about').children().size(); i++) {
+          $('.tgt_about').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+  <!-- サービス -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_service span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_service").offset().top) return;
+
+      // ここで文字を<span></span>で囲む
+      $('.tgt_service').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_service').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_service').children().size(); i++) {
+          $('.tgt_service').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+  <!-- goal -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_goal span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_goal").offset().top) return;
+
+      // ここで文字を<span></span>で囲む
+      $('.tgt_goal').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_goal').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_goal').children().size(); i++) {
+          $('.tgt_goal').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+  <!-- price -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_price span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_price").offset().top) return;
+
+      // ここで文字を<span></span>で囲む
+      $('.tgt_price').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_price').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_price').children().size(); i++) {
+          $('.tgt_price').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+  <!-- voice -->
+  <script>
+    $(window).scroll(function () {
+      if ($('.tgt_voice span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_voice").offset().top) return;
+
+      // ここで文字を<span></span>で囲む
+      $('.tgt_voice').children().andSelf().contents().each(function() {
         if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
         }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_voice').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_voice').children().size(); i++) {
+        $('.tgt_voice').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
     });
+  </script>
 
-    // 一文字ずつフェードインさせる
-    $('.tgt_about').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_about').children().size(); i++) {
-        $('.tgt_about').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-    };
-});
-</script>
+  <!-- MESSAGE -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_message span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_message").offset().top) return;
 
-<!-- サービス -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_service span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_service").offset().top) return;
+      // ここで文字を<span></span>で囲む
+      $('.tgt_message').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
 
-    // ここで文字を<span></span>で囲む
-    $('.tgt_service').children().andSelf().contents().each(function() {
-        if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+      // 一文字ずつフェードインさせる
+      $('.tgt_message').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_message').children().size(); i++) {
+          $('.tgt_message').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+
+  <!-- CONTACT -->
+  <script>
+  $(window).scroll(function () {
+      if ($('.tgt_contact span').length > 0) return;
+      var w_bottom = $(window).scrollTop() + $(window).height();
+      if (w_bottom < $(".tgt_contact").offset().top) return;
+
+      // ここで文字を<span></span>で囲む
+      $('.tgt_contact').children().andSelf().contents().each(function() {
+          if (this.nodeType == 3) {
+              $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+          }
+      });
+
+      // 一文字ずつフェードインさせる
+      $('.tgt_contact').css({'opacity':1});
+      for (var i = 0; i <= $('.tgt_contact').children().size(); i++) {
+          $('.tgt_contact').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
+      };
+  });
+  </script>
+
+  <!-- スクロール -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script>
+  function scrollChk(){
+    var scroll = $(window).scrollTop();
+    var windowHeight = $(window).height();
+
+      jQuery('.scroll-animation').not('.active').each(function(){
+          var pos = $(this).offset().top;
+
+          if (scroll > pos - windowHeight){
+              $(this).addClass("active");
+          }
+      });
+  }
+  $(window).scroll(function (){
+      scrollChk();
+  });
+  $('body').on('touchmove', function() {
+      scrollChk();
+  });
+  </script>
+
+  <script>
+  /*
+  Background Gradients From --
+  https://uigradients.com
+  */
+  </script>
+
+  <script>
+  $(function(){
+    const obj = $(".scroll-animation-obj");
+    const hopIn = $(".scroll-animation-hop");
+    const leftIn = $(".scroll-animation-left");
+    const rightIn = $(".scroll-animation-right");
+    $(window).on('scroll',function(){
+      obj.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'opacity': '1'
+          });
         }
-    });
-
-    // 一文字ずつフェードインさせる
-    $('.tgt_service').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_service').children().size(); i++) {
-        $('.tgt_service').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-    };
-});
-</script>
-
-<!-- goal -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_goal span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_goal").offset().top) return;
-
-    // ここで文字を<span></span>で囲む
-    $('.tgt_goal').children().andSelf().contents().each(function() {
-        if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+      });
+      hopIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
         }
-    });
-
-    // 一文字ずつフェードインさせる
-    $('.tgt_goal').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_goal').children().size(); i++) {
-        $('.tgt_goal').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-    };
-});
-</script>
-
-<!-- price -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_price span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_price").offset().top) return;
-
-    // ここで文字を<span></span>で囲む
-    $('.tgt_price').children().andSelf().contents().each(function() {
-        if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+      });
+      leftIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
         }
-    });
-
-    // 一文字ずつフェードインさせる
-    $('.tgt_price').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_price').children().size(); i++) {
-        $('.tgt_price').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-    };
-});
-</script>
-
-<!-- voice -->
-<script>
-	$(window).scroll(function () {
-		if ($('.tgt_voice span').length > 0) return;
-		var w_bottom = $(window).scrollTop() + $(window).height();
-		if (w_bottom < $(".tgt_voice").offset().top) return;
-
-		// ここで文字を<span></span>で囲む
-		$('.tgt_voice').children().andSelf().contents().each(function() {
-			if (this.nodeType == 3) {
-				$(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
-			}
-		});
-
-		// 一文字ずつフェードインさせる
-		$('.tgt_voice').css({'opacity':1});
-		for (var i = 0; i <= $('.tgt_voice').children().size(); i++) {
-			$('.tgt_voice').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-		};
-	});
-	</script>
-
-<!-- MESSAGE -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_message span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_message").offset().top) return;
-
-    // ここで文字を<span></span>で囲む
-    $('.tgt_message').children().andSelf().contents().each(function() {
-        if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
+      });
+      rightIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
         }
-    });
-
-    // 一文字ずつフェードインさせる
-    $('.tgt_message').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_message').children().size(); i++) {
-        $('.tgt_message').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-    };
-});
-</script>
-
-
-<!-- CONTACT -->
-<script>
-$(window).scroll(function () {
-    if ($('.tgt_contact span').length > 0) return;
-    var w_bottom = $(window).scrollTop() + $(window).height();
-    if (w_bottom < $(".tgt_contact").offset().top) return;
-
-    // ここで文字を<span></span>で囲む
-    $('.tgt_contact').children().andSelf().contents().each(function() {
-        if (this.nodeType == 3) {
-            $(this).replaceWith($(this).text().replace(/(\S)/g, '<span>$1</span>'));
-        }
-    });
-
-    // 一文字ずつフェードインさせる
-    $('.tgt_contact').css({'opacity':1});
-    for (var i = 0; i <= $('.tgt_contact').children().size(); i++) {
-        $('.tgt_contact').children('span:eq('+i+')').delay(300*i).animate({'opacity':1},400);
-    };
-});
-</script>
-
-<!-- スクロール -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script>
-function scrollChk(){
-  var scroll = $(window).scrollTop();
-  var windowHeight = $(window).height();
-
-    jQuery('.scroll-animation').not('.active').each(function(){
-        var pos = $(this).offset().top;
-
-        if (scroll > pos - windowHeight){
-            $(this).addClass("active");
-        }
-    });
-}
-$(window).scroll(function (){
-    scrollChk();
-});
-$('body').on('touchmove', function() {
-    scrollChk();
-});
-</script>
-
-<script>
-/*
-Background Gradients From --
-https://uigradients.com
-*/
-</script>
-
-<script>
-$(function(){
-  const obj = $(".scroll-animation-obj");
-  const hopIn = $(".scroll-animation-hop");
-  const leftIn = $(".scroll-animation-left");
-  const rightIn = $(".scroll-animation-right");
-  $(window).on('scroll',function(){
-    obj.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'opacity': '1'
-        });
-      }
-    });
-    hopIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
-    });
-    leftIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
-    });
-    rightIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
+      });
     });
   });
-});
-</script>
+  </script>
 
-<script>
-$(function(){
-  const obj = $(".scroll-animation-obj_02");
-  const hopIn = $(".scroll-animation-hop_02");
-  const leftIn = $(".scroll-animation-left_02");
-  const rightIn = $(".scroll-animation-right_02");
-  $(window).on('scroll',function(){
-    obj.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'opacity': '0.2'
-        });
-      }
-    });
-    hopIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
-    });
-    leftIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
-    });
-    rightIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
+  <script>
+  $(function(){
+    const obj = $(".scroll-animation-obj_02");
+    const hopIn = $(".scroll-animation-hop_02");
+    const leftIn = $(".scroll-animation-left_02");
+    const rightIn = $(".scroll-animation-right_02");
+    $(window).on('scroll',function(){
+      obj.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'opacity': '0.2'
+          });
+        }
+      });
+      hopIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
+        }
+      });
+      leftIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
+        }
+      });
+      rightIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
+        }
+      });
     });
   });
-});
-</script>
-<script>
-$(function(){
-  const obj = $(".scroll-animation-obj_03");
-  const hopIn = $(".scroll-animation-hop_03");
-  const leftIn = $(".scroll-animation-left_03");
-  const rightIn = $(".scroll-animation-right_03");
-  $(window).on('scroll',function(){
-    obj.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'opacity': '0.2'
-        });
-      }
-    });
-    hopIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
-    });
-    leftIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
-    });
-    rightIn.each(function(){
-      const objPos = $(this).offset().top;
-      const scroll = $(window).scrollTop();
-      const windowH = $(window).height();
-      if(scroll > objPos - windowH){
-        $(this).css({
-          'transform': 'translate(0,0)'
-        });
-      }
+  </script>
+  <script>
+  $(function(){
+    const obj = $(".scroll-animation-obj_03");
+    const hopIn = $(".scroll-animation-hop_03");
+    const leftIn = $(".scroll-animation-left_03");
+    const rightIn = $(".scroll-animation-right_03");
+    $(window).on('scroll',function(){
+      obj.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'opacity': '0.2'
+          });
+        }
+      });
+      hopIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
+        }
+      });
+      leftIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
+        }
+      });
+      rightIn.each(function(){
+        const objPos = $(this).offset().top;
+        const scroll = $(window).scrollTop();
+        const windowH = $(window).height();
+        if(scroll > objPos - windowH){
+          $(this).css({
+            'transform': 'translate(0,0)'
+          });
+        }
+      });
     });
   });
-});
-</script>
-<!-- アニメーション -->
+  </script>
+  <!-- アニメーション -->
 
-<!-- ドロワーメニューの利用宣言 -->
+  <!-- ドロワーメニューの利用宣言 -->
   <script>
     $(document).ready(function() {
       $('.drawer').drawer();
@@ -555,65 +555,65 @@ $(function(){
 
   <!-- MENUボタンの表示・非表示 -->
   <script type="text/javascript">
-    $(document).on('click',function(e) {
-      if(!$(e.target).closest('#menu_button').length) {
-     // ターゲット要素の外側をクリックした時の操作
-     $('#menu_button').slideDown();
- } else {
-     // ターゲット要素をクリックした時の操作
-     $('#menu_button').slideUp();
- }
-});
-</script>
+      $(document).on('click',function(e) {
+        if(!$(e.target).closest('#menu_button').length) {
+      // ターゲット要素の外側をクリックした時の操作
+      $('#menu_button').slideDown();
+  } else {
+      // ターゲット要素をクリックした時の操作
+      $('#menu_button').slideUp();
+  }
+  });
+  </script>
 
-<!-- スライド  -->
-<script>
-  var mySwiper = new Swiper ('.swiper-container', {
-      // ここからオプション
-      loop: true,
-      speed: 500,
-      autoplay: {
-        delay: 5000,
-      },
-  })
-</script>
+  <!-- スライド  -->
+  <script>
+    var mySwiper = new Swiper ('.swiper-container', {
+        // ここからオプション
+        loop: true,
+        speed: 500,
+        autoplay: {
+          delay: 5000,
+        },
+    })
+  </script>
 
-<!-- <link href=’http://fonts.googleapis.com/css?family=Patrick+Hand+SC’ rel=’stylesheet’ type=’text/css’> -->
+  <!-- <link href=’http://fonts.googleapis.com/css?family=Patrick+Hand+SC’ rel=’stylesheet’ type=’text/css’> -->
 
-<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-<script>
-    $(window).scroll(function (){
-      $('.details_02').each(function(){
-        var elemPos = $(this).offset().top,
-        scroll = $(window).scrollTop(),
-        windowHeight = $(window).height();
-        if (scroll > elemPos - windowHeight + 100){
-          $(this).addClass('scrollin');
-        }
+  <script>
+      $(window).scroll(function (){
+        $('.details_02').each(function(){
+          var elemPos = $(this).offset().top,
+          scroll = $(window).scrollTop(),
+          windowHeight = $(window).height();
+          if (scroll > elemPos - windowHeight + 100){
+            $(this).addClass('scrollin');
+          }
+        });
       });
-    });
-    $(window).scroll(function (){
-      $('.service_box2').each(function(){
-        var elemPos = $(this).offset().top,
-        scroll = $(window).scrollTop(),
-        windowHeight = $(window).height();
-        if (scroll > elemPos - windowHeight + 100){
-          $(this).addClass('scrollin');
-        }
+      $(window).scroll(function (){
+        $('.service_box2').each(function(){
+          var elemPos = $(this).offset().top,
+          scroll = $(window).scrollTop(),
+          windowHeight = $(window).height();
+          if (scroll > elemPos - windowHeight + 100){
+            $(this).addClass('scrollin');
+          }
+        });
       });
-    });
-    $(window).scroll(function (){
-      $('.service_box3').each(function(){
-        var elemPos = $(this).offset().top,
-        scroll = $(window).scrollTop(),
-        windowHeight = $(window).height();
-        if (scroll > elemPos - windowHeight + 100){
-          $(this).addClass('scrollin');
-        }
+      $(window).scroll(function (){
+        $('.service_box3').each(function(){
+          var elemPos = $(this).offset().top,
+          scroll = $(window).scrollTop(),
+          windowHeight = $(window).height();
+          if (scroll > elemPos - windowHeight + 100){
+            $(this).addClass('scrollin');
+          }
+        });
       });
-    });
-</script>
+  </script>
 
 </head>
 <body>
@@ -625,7 +625,7 @@ $(function(){
 
 	　　<!-- header -->
   <div id="container">
-	　　	<div class="cp_cont">
+　　<div class="cp_cont">
 			<div class="logo"></div>
 
       <div class="menu_button_sp">
